@@ -17,15 +17,15 @@ WORKDIR /root/production
 # Clone the Quiz app repo into the container
 RUN git clone -b docker https://github.com/mdelgadonyc/wiz-zzer.git
 # Change to the local repo
-WORKDIR /root/production/recurse-quiz-app/app
+WORKDIR /root/production/wiz-zzer/
 
 # Install (systemwide) the packages necessary for the Flask quiz app to run
 RUN apt install -y gunicorn python3-gunicorn python3-eventlet python3-dotenv python3-flask python3-flask-migrate python3-flask-socketio
 
 # Copy custom start up script that runs the flask app
 # Run dos2unix to remove possible carriage returns (CR) introduced by Windows during the copy process
-# COPY start_quiz.sh /root/production/recurse-quiz-app/start_quiz.sh
-# RUN dos2unix /root/production/recurse-quiz-app/start_quiz.sh
+# COPY start_quiz.sh /root/production/wiz-zzer/start_quiz.sh
+# RUN dos2unix /root/production/wiz-zzer/app/start_quiz.sh
 RUN chmod u+x /root/production/wiz-zzer/app/start_quiz.sh
 
 # Run the quiz Flask app
